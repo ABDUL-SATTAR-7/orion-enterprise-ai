@@ -216,3 +216,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Orion
+backend/orion.db
+*.db
+__pycache__/
