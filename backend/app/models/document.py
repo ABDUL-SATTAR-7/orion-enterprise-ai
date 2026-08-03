@@ -20,12 +20,6 @@ class Document(Base):
         index=True
     )
 
-    user_id = Column(
-        Integer,
-        ForeignKey("users.id"),
-        nullable=False
-    )
-
     filename = Column(
         String,
         nullable=False
@@ -36,16 +30,23 @@ class Document(Base):
         nullable=False
     )
 
-    filetype = Column(
+    content_type = Column(
         String,
         nullable=False
     )
 
-    created_at = Column(
+    user_id = Column(
+        Integer,
+        ForeignKey("users.id"),
+        nullable=False
+    )
+
+    uploaded_at = Column(
         DateTime(timezone=True),
         server_default=func.now()
     )
 
     user = relationship(
-        "User"
+        "User",
+        back_populates="documents"
     )

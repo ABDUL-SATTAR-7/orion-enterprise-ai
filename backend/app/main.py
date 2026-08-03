@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from app.models.user import User
 from app.database.database import Base, engine
 from app.api.auth import router as auth_router
+from app.api.document import router as document_router
 
 # Import models so SQLAlchemy registers them
 from app.models.conversation import Conversation
@@ -17,7 +18,6 @@ app = FastAPI(
     title="Orion Enterprise AI",
     version="1.0.0"
 )
-app.include_router(auth_router)
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
@@ -33,3 +33,5 @@ def home():
 # Register routers
 app.include_router(chat_router)
 app.include_router(conversation_router)
+app.include_router(auth_router)
+app.include_router(document_router)
